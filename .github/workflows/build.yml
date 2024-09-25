@@ -37,6 +37,7 @@ jobs:
 
       - name: Build with Gradle
         run: |
+          ./gradlew clean
           ./gradlew :app:aR
 
       - name: Upload build artifact
