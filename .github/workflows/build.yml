@@ -30,16 +30,19 @@ jobs:
 #          repository: xihan123/YukiHookAPI
 #          path: xihan123/YukiHookAPI
 #
-#      - name: Build dependencies
-#        working-directory: xihan123
-#        run: |
-#          cd YukiHookAPI
-#          chmod +x gradlew
-#          ./gradlew publishToMavenLocal
+      - name: Build dependencies
+        working-directory: text
+        run: |
+          cd YukiHookAPI
+          chmod +x gradlew
+
 
       - name: Build with Gradle
         run: |
           ./gradlew :app:aR
+
+
+
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
