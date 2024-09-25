@@ -34,7 +34,6 @@
 # kept. Suspend functions are wrapped in continuations where the type argument
 # is used.
 -keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation;
-
 -keep class com.hjq.permissions.** {*;}
 
 -keepclassmembers class androidx.compose.ui.graphics.AndroidImageBitmap_androidKt{
