@@ -1,6 +1,6 @@
 #---------------------------------基本指令区---------------------------------
 # 指定代码的压缩级别
--optimizationpasses 7
+-optimizationpasses 5
 -flattenpackagehierarchy
 -allowaccessmodification
 # 避免混淆Annotation、内部类、泛型、匿名类
@@ -27,23 +27,14 @@
 -keep public class * extends android.app.Service
 -keep public class * extends android.content.BroadcastReceiver
 -keep public class * extends android.content.ContentProvider
--keep public class * extends android.app.backup.BackupAgentHelper
--keep public class * extends android.preference.Preference
 -keep public class * extends android.view.View
 
-
-# Remove Kotlin Instrisics (should not impact the app)
+# Remove Kotlin Intrinsics (should not impact the app)
 # https://proandroiddev.com/is-your-kotlin-code-really-obfuscated-a36abf033dde
 -assumenosideeffects class kotlin.jvm.internal.Intrinsics {
     public static void checkExpressionValueIsNotNull(...);
     public static void checkFieldIsNotNull(...);
-    public static void checkFieldIsNotNull(...);
-    public static void checkNotNull(...);
-    public static void checkNotNull(...);
-    public static void checkNotNullExpressionValue(...);
-    public static void checkNotNullParameter(...);
     public static void checkParameterIsNotNull(...);
-    public static void checkReturnedValueIsNotNull(...);
     public static void checkReturnedValueIsNotNull(...);
     public static void throwUninitializedPropertyAccessException(...);
 }
@@ -59,20 +50,20 @@
 -keep class com.hjq.permissions.** {*;}
 
 -keepclassmembers class androidx.compose.ui.graphics.AndroidImageBitmap_androidKt{
-public *** asImageBitmap(...);
+    public *** asImageBitmap(...);
 }
 -keepclassmembers class androidx.compose.ui.platform.AndroidCompositionLocals_androidKt{
-public *** getLocalContext(...);
+    public *** getLocalContext(...);
 }
 -keepclassmembers class androidx.compose.foundation.OverscrollConfigurationKt{
-public *** getLocalOverscrollConfiguration(...);
+    public *** getLocalOverscrollConfiguration(...);
 }
+
 #---------------------------------序列化指令区---------------------------------
 -keep,includedescriptorclasses class cn.xihan.qdds.**$$serializer { *; }
 -keepclassmembers class cn.xihan.qdds.** {
     *** Companion;
 }
-
 
 -dontwarn java.lang.ClassValue
 -dontwarn org.bouncycastle.jsse.BCSSLParameters
