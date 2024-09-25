@@ -1,6 +1,6 @@
 #---------------------------------基本指令区---------------------------------
 # 指定代码的压缩级别
--optimizationpasses 4
+-optimizationpasses 7
 -flattenpackagehierarchy
 -allowaccessmodification
 # 避免混淆Annotation、内部类、泛型、匿名类
@@ -22,17 +22,11 @@
 # Remove Kotlin Instrisics (should not impact the app)
 # https://proandroiddev.com/is-your-kotlin-code-really-obfuscated-a36abf033dde
 -assumenosideeffects class kotlin.jvm.internal.Intrinsics {
-    public static void checkExpressionValueIsNotNull(...);
-    public static void checkFieldIsNotNull(...);
-    public static void checkFieldIsNotNull(...);
-    public static void checkNotNull(...);
-    public static void checkNotNull(...);
-    public static void checkNotNullExpressionValue(...);
-    public static void checkNotNullParameter(...);
-    public static void checkParameterIsNotNull(...);
-    public static void checkReturnedValueIsNotNull(...);
-    public static void checkReturnedValueIsNotNull(...);
-    public static void throwUninitializedPropertyAccessException(...);
+    public static void check*(...);
+	public static void throw*(...);
+}
+-assumenosideeffects class java.util.Objects{
+    ** requireNonNull(...);
 }
 
 # JSR 305 annotations are for embedding nullability information.
