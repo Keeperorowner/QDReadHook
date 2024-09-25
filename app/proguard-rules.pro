@@ -7,6 +7,7 @@
 -keepattributes Signature,Exceptions,*Annotation*,
                 InnerClasses,PermittedSubclasses,EnclosingMethod,
                 Deprecated,SourceFile,LineNumberTable
+
 #---------------------------------默认保留区---------------------------------
 -keep public class * extends android.app.Activity
 -keep public class * extends android.app.Application
@@ -21,11 +22,12 @@
 # Remove Kotlin Instrisics (should not impact the app)
 # https://proandroiddev.com/is-your-kotlin-code-really-obfuscated-a36abf033dde
 -assumenosideeffects class kotlin.jvm.internal.Intrinsics {
-  public static void check*(...);
+	public static void check*(...);
 	public static void throw*(...);
 }
-   -assumenosideeffects class java.util.Objects{
+-assumenosideeffects class java.util.Objects{
     ** requireNonNull(...);
+}
 
 # JSR 305 annotations are for embedding nullability information.
 -dontwarn javax.annotation.**
@@ -33,14 +35,8 @@
 # With R8 full mode generic signatures are stripped for classes that are not
 # kept. Suspend functions are wrapped in continuations where the type argument
 # is used.
--keepattributes Exceptions;
--keepattributes *Annotation*;
--keepattributes InnerClasses;
--keepattributes PermittedSubclasses;
--keepattributes EnclosingMethod;
--keepattributes Deprecated;
--keepattributes SourceFile;
--keepattributes LineNumberTable;
+-keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
+
 -keep class com.hjq.permissions.** {*;}
 
 -keepclassmembers class androidx.compose.ui.graphics.AndroidImageBitmap_androidKt{
@@ -70,4 +66,3 @@ public *** getLocalOverscrollConfiguration(...);
 -dontwarn org.openjsse.javax.net.ssl.SSLSocket
 -dontwarn org.openjsse.net.ssl.OpenJSSE
 -dontwarn javax.lang.model.element.Modifier
--dontwarn org.slf4j.impl.StaticLoggerBinder
