@@ -30,8 +30,7 @@ jobs:
 #          repository: xihan123/YukiHookAPI
 #          path: xihan123/YukiHookAPI
 #
-      - name: Build dependencies
-        working-directory: text
+      - name: Give execute permission
         run: |
           chmod +x gradlew
 
