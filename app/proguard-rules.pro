@@ -7,6 +7,19 @@
 -keepattributes Signature,Exceptions,*Annotation*,
                 InnerClasses,PermittedSubclasses,EnclosingMethod,
                 Deprecated,SourceFile,LineNumberTable
+-keepattributes 'SourceFile'
+-renamesourcefileattribute '希涵'
+-obfuscationdictionary 'dictionary.txt'
+-classobfuscationdictionary 'dictionary.txt'
+-packageobfuscationdictionary 'dictionary.txt'
+#混淆时不使用大小写混合，混淆后的类名为小写(大小写混淆容易导致class文件相互覆盖）
+-dontusemixedcaseclassnames
+#未混淆的类和成员
+-printseeds seeds.txt
+#列出从 apk 中删除的代码
+-printusage unused.txt
+#混淆前后的映射
+-printmapping mapping.txt
 
 #---------------------------------默认保留区---------------------------------
 -keep public class * extends android.app.Activity
@@ -22,11 +35,17 @@
 # Remove Kotlin Instrisics (should not impact the app)
 # https://proandroiddev.com/is-your-kotlin-code-really-obfuscated-a36abf033dde
 -assumenosideeffects class kotlin.jvm.internal.Intrinsics {
-	public static void check*(...);
-	public static void throw*(...);
-}
--assumenosideeffects class java.util.Objects{
-    ** requireNonNull(...);
+    public static void checkExpressionValueIsNotNull(...);
+    public static void checkFieldIsNotNull(...);
+    public static void checkFieldIsNotNull(...);
+    public static void checkNotNull(...);
+    public static void checkNotNull(...);
+    public static void checkNotNullExpressionValue(...);
+    public static void checkNotNullParameter(...);
+    public static void checkParameterIsNotNull(...);
+    public static void checkReturnedValueIsNotNull(...);
+    public static void checkReturnedValueIsNotNull(...);
+    public static void throwUninitializedPropertyAccessException(...);
 }
 
 # JSR 305 annotations are for embedding nullability information.
@@ -66,3 +85,4 @@ public *** getLocalOverscrollConfiguration(...);
 -dontwarn org.openjsse.javax.net.ssl.SSLSocket
 -dontwarn org.openjsse.net.ssl.OpenJSSE
 -dontwarn javax.lang.model.element.Modifier
+-dontwarn org.slf4j.impl.StaticLoggerBinder
