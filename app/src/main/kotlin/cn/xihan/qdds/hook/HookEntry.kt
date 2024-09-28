@@ -196,6 +196,10 @@ class HookEntry : IYukiHookXposedInit, KoinComponent {
         if (optionEntity.readPageOption.enableRedirectReadingPageBackgroundPath) {
             redirectReadingPageBackgroundPath(versionCode, bridge)
         }
+        
+        if (optionEntity.startImageOption.enableRedirectLocalStartImage) {
+            customLocalStartImage(versionCode)
+        }
 
         advOption(versionCode, optionEntity.advOption, bridge)
 
