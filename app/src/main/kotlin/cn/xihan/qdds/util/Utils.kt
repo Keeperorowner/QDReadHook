@@ -909,7 +909,26 @@ fun com.alibaba.fastjson2.JSONObject.getJSONArrayWithFallback(key: String): com.
  * @suppress Generate Documentation
  */
 fun View.getName() = toString().substringAfter("/").replace("}", "")
-
+/**
+ * 随机位图
+ * @since 7.9.354-1296
+ * @return [Bitmap?]
+ * @suppress Generate Documentation
+ */
+fun randomBitmap(): Bitmap? {
+    val filter = FilenameFilter { _, name ->
+        name.endsWith(".jpg", true) || name.endsWith(".png", true)
+    }
+    val files = File(splashPath).apply { if (!exists()) mkdirs() }
+    val list = files.listFiles(filter) ?: return null
+    val index = (list.indices).random()
+    return try {
+        BitmapFactory.decodeFile(list[index].absolutePath)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        null
+    }
+}
 /**
  * 数据处理
  * @since 7.9.354-1336
