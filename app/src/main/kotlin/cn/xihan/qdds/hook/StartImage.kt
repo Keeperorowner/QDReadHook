@@ -148,6 +148,7 @@ fun PackageParam.captureTheOfficialLaunchMapList(versionCode: Int) {
 
         else -> "抓取官方启动图列表".printlnNotSupportVersion(versionCode)
     }
+}
     /**
  * # 自定义本地启动图
  * * 启用后放置于/storage/emulated/0/Download/QDReader/Splash
